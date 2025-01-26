@@ -1,12 +1,18 @@
 from rich.console import Console
 from rich.theme import Theme
 from rich.traceback import install
+from rich.table import Table
+from rich.progress import Progress
+from rich.logging import RichHandler
+import logging
+import time
 
-install(show_locals=True) 
+install(show_locals=True)
 
-custom_theme = Theme({'error': 'bold red', 'warning': 'bold yellow'})
+custom_theme = Theme({"error": "bold red", "warning": "bold yellow"})
 
 console = Console(theme=custom_theme)
+
 
 def compare_numbers(a, b):
     console.log(log_locals=True)
@@ -17,33 +23,23 @@ def compare_numbers(a, b):
     else:
         console.print(f"{a} is equal to {b}")
 
+
 compare_numbers(5, 10)
 compare_numbers(10, 5)
 compare_numbers(5, 5)
 
 compare_numbers(5, "Ecem")
 
-from rich.console import Console
-from rich.table import Table
-from rich.progress import Progress
-from rich.traceback import install
-from rich.logging import RichHandler
-import logging
-import time
 
 # Install rich traceback for better error visualization
-install(show_locals=True) 
+install(show_locals=True)
 
 # Create a console instance
 console = Console()
 
 # 1. Pretty-print dictionaries with colors and styling
 console.print("[bold cyan]Pretty-Printing a Dictionary:[/bold cyan]")
-data = {
-    "name": "Alice",
-    "age": 30,
-    "languages": ["Python", "JavaScript", "C++"]
-}
+data = {"name": "Alice", "age": 30, "languages": ["Python", "JavaScript", "C++"]}
 console.print(data, style="bold green")
 
 # 2. Custom-styled text
@@ -69,11 +65,7 @@ with Progress() as progress:
 
 # 5. Logging example
 console.print("\n[bold cyan]Logging Example:[/bold cyan]")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    handlers=[RichHandler()]
-)
+logging.basicConfig(level=logging.INFO, format="%(message)s", handlers=[RichHandler()])
 logger = logging.getLogger("rich")
 logger.info("This is an info message")
 logger.warning("This is a warning message")
